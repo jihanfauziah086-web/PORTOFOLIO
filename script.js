@@ -1,30 +1,52 @@
-const menuBtn = document.querySelector(".menu-btn");
-const navLinks = document.querySelector(".nav-links");
+const text =
+"Aku masih mempertimbangkan apakah akan menjadi Cyber Security Specialist 🔐 atau IoT Engineer 🤖. Apa pun pilihannya, aku akan terus belajar dan berkembang.";
 
-menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+let i = 0;
+
+function typing(){
+
+if(i < text.length){
+
+document.getElementById("typing").innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(typing,45);
+
+}
+
+}
+
+typing();
+
+document.getElementById("btn").addEventListener("click",()=>{
+
+document.getElementById("dream").scrollIntoView({
+behavior:"smooth"
 });
 
-// Menutup menu saat link diklik
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-    });
 });
 
-// Efek navbar saat scroll
-window.addEventListener("scroll", () => {
-    const header = document.querySelector("header");
+const boxes=document.querySelectorAll(".box");
 
-    if(window.scrollY > 50){
-        header.style.boxShadow = "0 2px 15px rgba(0,0,0,.4)";
-    }else{
-        header.style.boxShadow = "none";
-    }
+window.addEventListener("scroll",()=>{
+
+boxes.forEach(box=>{
+
+const top=box.getBoundingClientRect().top;
+
+if(top<window.innerHeight-100){
+
+box.style.opacity="1";
+box.style.transform="translateY(0)";
+
+}else{
+
+box.style.opacity="0";
+box.style.transform="translateY(40px)";
+
+}
+
 });
 
-// Form demo
-document.querySelector("form").addEventListener("submit", function(e){
-    e.preventDefault();
-    alert("Pesan berhasil dikirim!");
 });
